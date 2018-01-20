@@ -1,11 +1,13 @@
 from menu import menu
 from hero import create_new_hero, hero_classes, display_stats
 from battle import battle
+from monster import get_monster
 
-troll = {
-    'name': 'Troll',
+rat = {
+    'name': 'Giant Rat',
     'hp': 10,
-    'attack': 5,
+    'max hp': 10,
+    'attack': 3,
     'defense': 1,
     'weapon': None
 }
@@ -32,10 +34,13 @@ def main():
         if action == 'Display Stats':
             display_stats(hero)
         if action == 'Battle':
-            battle(hero, troll)
+            monster = get_monster('Giant Rat')
+            battle(hero, monster)
 
-            if hero['hp'] == 0:
-                print('You have died.')
+            if hero['hp'] > 0:
+                print('{} defeated the {}.'.format(hero['name'], rat['name']))
+            else:
+                print('{} died...'.format(hero['name']))
                 game_over = True
                 quit_game = True
 
