@@ -4,6 +4,12 @@ from menu import menu
 
 
 def battle(hero, monster):
+    first = hero
+    second = monster
+    if hero['speed'] < monster['speed']:
+        first = monster
+        second = hero
+
     battle_over = False
     run_successful = False
     while not (battle_over or run_successful):
@@ -12,13 +18,10 @@ def battle(hero, monster):
 
         if action == 'Attack':
 
-            first = hero
-            second = monster
-
             second = attack(first, second)
 
             if second['hp'] > 0:
-                hero = attack(second, first)
+                first = attack(second, first)
 
             if hero['hp'] == 0 or monster['hp'] == 0:
                 battle_over = True

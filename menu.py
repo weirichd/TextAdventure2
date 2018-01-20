@@ -10,5 +10,4 @@ def menu(menu_items):
         if choice in [str(index + 1) for index in range(len(menu_items))]:
             return menu_items[int(choice) - 1]
 
-        print('Please try again.')
-
+        print('Please select a valid choice.')

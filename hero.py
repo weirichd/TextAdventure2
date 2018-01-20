@@ -3,9 +3,11 @@ hero_classes = {
         'max hp': 12,
         'attack': 3,
         'defense': 2,
+        'speed': 0,
         'hp per level': 2,
         'attack per level': 3,
-        'defense per level': 2
+        'defense per level': 2,
+        'speed per level': 1
     }
 }
 
@@ -36,15 +38,17 @@ def display_stats(hero):
     print('+-----------------+----------------+')
     print('|  ATTACK:        |  {0: <4}          |'.format(hero['attack']))
     print('|  DEFENSE:       |  {0: <4}          |'.format(hero['defense']))
+    print('|  SPEED:         |  {0: <4}          |'.format(hero['speed']))
     print('+-----------------+----------------+')
 
 
 def level_up(hero):
     hero['level'] = hero['level'] + 1
-    hero['max hp'] = hero['max hp'] + hero_classes[hero['class']]['hp per level']
+    hero['max hp'] = hero['max hp'] + hero['hp per level']
     hero['hp'] = hero['max hp']
-    hero['attack'] = hero['attack'] + hero_classes[hero['class']]['attack per level']
-    hero['defense'] = hero['defense'] + hero_classes[hero['class']]['defense per level']
+    hero['attack'] = hero['attack'] + hero['attack per level']
+    hero['defense'] = hero['defense'] + hero['defense per level']
+    hero['speed'] = hero['speed'] + hero['speed per level']
     hero['next level'] = hero['next level'] + hero['level'] * 2
 
     return hero

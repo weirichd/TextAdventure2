@@ -5,7 +5,9 @@ from monster import get_monster
 
 
 def main():
-    print('Welcome to Adventure II!')
+    print('Welcome to '
+          'Adventure II:')
+    print('The Adventure Continues')
 
     print('Select an option:')
 
@@ -29,7 +31,7 @@ def main():
             battle(hero, monster)
 
             if hero['hp'] > 0:
-                print('{} defeated the {}.'.format(hero['name'], rat['name']))
+                print('{} defeated the {}.'.format(hero['name'], monster['name']))
                 hero['exp'] = hero['exp'] + monster['exp']
                 print('{} got {} exp.'.format(hero['name'], monster['exp']))
 
