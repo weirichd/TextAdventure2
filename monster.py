@@ -3,7 +3,8 @@ monsters = {
         'max hp': 10,
         'attack': 3,
         'defense': 1,
-        'weapon': None
+        'weapon': None,
+        'exp': 1
     }
 }
 

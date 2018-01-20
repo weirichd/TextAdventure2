@@ -28,16 +28,20 @@ def battle(hero, monster):
 
 
 def attack(attacker, target):
-    print('{} attacks {}!'.format(attacker['name'], target['name']))
-
-    attack_stat = attacker['attack']
-    defense_stat = target['defense']
+    if attacker['weapon'] is None:
+        print('{} attacks {}!'.format(attacker['name'], target['name']))
+    else:
+        print('{} {} their {} at {}!'.format(
+            attacker['name'],
+            attacker['weapon']['verb'],
+            attacker['weapon']['name'],
+            target['name']))
 
     weapon_bonus = 0
     if attacker['weapon'] is not None:
         weapon_bonus = attacker['weapon']['damage']
 
-    base_damage = attack_stat + weapon_bonus - defense_stat
+    base_damage = attacker['attack'] + weapon_bonus - target['defense']
 
     if base_damage < 0:
         base_damage = 0

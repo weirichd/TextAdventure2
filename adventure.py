@@ -1,16 +1,7 @@
 from menu import menu
-from hero import create_new_hero, hero_classes, display_stats
+from hero import create_new_hero, hero_classes, display_stats, level_up
 from battle import battle
 from monster import get_monster
-
-rat = {
-    'name': 'Giant Rat',
-    'hp': 10,
-    'max hp': 10,
-    'attack': 3,
-    'defense': 1,
-    'weapon': None
-}
 
 
 def main():
@@ -39,6 +30,13 @@ def main():
 
             if hero['hp'] > 0:
                 print('{} defeated the {}.'.format(hero['name'], rat['name']))
+                hero['exp'] = hero['exp'] + monster['exp']
+                print('{} got {} exp.'.format(hero['name'], monster['exp']))
+
+                if hero['exp'] >= hero['next level']:
+                    hero = level_up(hero)
+                    print('{} reached level {}.'.format(hero['name'], hero['level']))
+                    display_stats(hero)
             else:
                 print('{} died...'.format(hero['name']))
                 game_over = True
