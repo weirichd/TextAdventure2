@@ -1,5 +1,14 @@
 from menu import menu
 from hero import create_new_hero, hero_classes, display_stats
+from battle import battle
+
+troll = {
+    'name': 'Troll',
+    'hp': 10,
+    'attack': 5,
+    'defense': 1,
+    'weapon': None
+}
 
 
 def main():
@@ -14,16 +23,27 @@ def main():
     else:
         hero = new_game()
 
-    # TODO: For debug use
-    display_stats(hero)
-
     quit_game = False
+    game_over = False
 
     while not quit_game:
-        action = menu(['Quit Game'])
+        action = menu(['Display Stats', 'Battle', 'Quit Game'])
+
+        if action == 'Display Stats':
+            display_stats(hero)
+        if action == 'Battle':
+            battle(hero, troll)
+
+            if hero['hp'] == 0:
+                print('You have died.')
+                game_over = True
+                quit_game = True
 
         if action == 'Quit Game':
             quit_game = True
+
+    if game_over:
+        print('GAME OVER')
 
     print('Thanks for playing.')
 
