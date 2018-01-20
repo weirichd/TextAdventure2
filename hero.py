@@ -8,6 +8,16 @@ hero_classes = {
         'attack per level': 3,
         'defense per level': 2,
         'speed per level': 1
+    },
+    'Archer': {
+        'max hp': 8,
+        'attack': 5,
+        'defense': 1,
+        'speed': 2,
+        'hp per level': 2,
+        'attack per level': 4,
+        'defense per level': 1,
+        'speed per level': 1
     }
 }
 

@@ -7,6 +7,22 @@ monsters = {
         'weapon': None,
         'exp': 1
     },
+    'Troll': {
+        'max hp': 15,
+        'attack': 5,
+        'defense': 3,
+        'speed': 3,
+        'weapon': None,
+        'exp': 2
+    },
+    'Ogre': {
+        'max hp': 25,
+        'attack': 7,
+        'defense': 5,
+        'speed': 5,
+        'weapon': None,
+        'exp': 3
+    }
 }
 
 

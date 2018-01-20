@@ -17,7 +17,6 @@ def battle(hero, monster):
         action = menu(['Attack', 'Run'])
 
         if action == 'Attack':
-
             second = attack(first, second)
 
             if second['hp'] > 0:
