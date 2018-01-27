@@ -1,7 +1,6 @@
 from menu import menu
-from hero import create_new_hero, hero_classes, display_stats, level_up, inventory
-from battle import battle
-from monster import get_monster, monsters
+from hero import create_new_hero, hero_classes, display_stats, inventory
+from battle import monster_menu
 
 
 def main():
@@ -26,28 +25,10 @@ def main():
         if action == 'Display Stats':
             display_stats(hero)
         if action == 'Battle':
-            print('What monster will you fight?')
-            monster_list = list(monsters.keys())
-            monster_list.append('Go back')
+            game_over = monster_menu(hero)
+            if game_over:
+                quit_game = True
 
-            monster_choice = menu(monster_list)
-
-            if monster_choice != 'Go back':
-                monster = get_monster(monster_choice)
-                battle(hero, monster)
-
-                if hero['hp'] > 0:
-                    print('{} defeated the {}.'.format(hero['name'], monster['name']))
-                    hero['exp'] = hero['exp'] + monster['exp']
-                    print('{} got {} exp.'.format(hero['name'], monster['exp']))
-                    if hero['exp'] >= hero['next level']:
-                        hero = level_up(hero)
-                        print('{} reached level {}.'.format(hero['name'], hero['level']))
-                        display_stats(hero)
-                else:
-                    print('{} died...'.format(hero['name']))
-                    game_over = True
-                    quit_game = True
         if action == 'Inventory':
             inventory(hero)
 

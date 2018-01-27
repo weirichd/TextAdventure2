@@ -1,6 +1,34 @@
 from random import random
 
 from menu import menu
+from monster import monsters, get_monster
+from hero import level_up, display_stats
+
+
+def monster_menu(hero):
+    print('What monster will you fight?')
+    monster_list = list(monsters.keys())
+    monster_list.append('Go back')
+
+    monster_choice = menu(monster_list)
+
+    if monster_choice != 'Go back':
+        monster = get_monster(monster_choice)
+        battle(hero, monster)
+
+        if hero['hp'] > 0:
+            print('{} defeated the {}.'.format(hero['name'], monster['name']))
+            hero['exp'] = hero['exp'] + monster['exp']
+            print('{} got {} exp.'.format(hero['name'], monster['exp']))
+            if hero['exp'] >= hero['next level']:
+                hero = level_up(hero)
+                print('{} reached level {}.'.format(hero['name'], hero['level']))
+                display_stats(hero)
+        else:
+            print('{} died...'.format(hero['name']))
+            return True  # Game over
+
+    return False
 
 
 def battle(hero, monster):
