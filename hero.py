@@ -32,10 +32,12 @@ def create_new_hero(name, hero_class):
     hero['next level'] = 3
     hero['hp'] = hero['max hp']
     hero['weapon'] = {
-        'name': 'Sword',
+        'name': 'rusty sword',
         'verb': 'swings',
         'damage': 2
     }
+    hero['inventory'] = ['Potion', 'Feather']
+    hero['gold'] = 0
 
     return hero
 
@@ -62,3 +64,10 @@ def level_up(hero):
     hero['next level'] = hero['next level'] + hero['level'] * 2
 
     return hero
+
+
+def inventory(hero):
+    print("{}'s Inventory:".format(hero['name']))
+    print('Gold: {}'.format(hero['gold']))
+    for item in hero['inventory']:
+        print(item)

@@ -1,12 +1,11 @@
 from menu import menu
-from hero import create_new_hero, hero_classes, display_stats, level_up
+from hero import create_new_hero, hero_classes, display_stats, level_up, inventory
 from battle import battle
 from monster import get_monster, monsters
 
 
 def main():
-    print('Welcome to '
-          'Adventure II:')
+    print('Welcome to Adventure II:')
     print('The Adventure Continues')
 
     print('Select an option:')
@@ -22,7 +21,7 @@ def main():
     game_over = False
 
     while not quit_game:
-        action = menu(['Display Stats', 'Battle', 'Quit Game'])
+        action = menu(['Display Stats', 'Inventory', 'Battle', 'Quit Game'])
 
         if action == 'Display Stats':
             display_stats(hero)
@@ -41,7 +40,6 @@ def main():
                     print('{} defeated the {}.'.format(hero['name'], monster['name']))
                     hero['exp'] = hero['exp'] + monster['exp']
                     print('{} got {} exp.'.format(hero['name'], monster['exp']))
-
                     if hero['exp'] >= hero['next level']:
                         hero = level_up(hero)
                         print('{} reached level {}.'.format(hero['name'], hero['level']))
@@ -50,6 +48,8 @@ def main():
                     print('{} died...'.format(hero['name']))
                     game_over = True
                     quit_game = True
+        if action == 'Inventory':
+            inventory(hero)
 
         if action == 'Quit Game':
             quit_game = True
@@ -64,7 +64,6 @@ def new_game():
     print('New Game')
     print('What is your name?')
 
-    # TODO: Warn about name length
     name = input()
 
     print('Please select a class.')

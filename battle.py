@@ -4,11 +4,19 @@ from menu import menu
 
 
 def battle(hero, monster):
-    first = hero
-    second = monster
     if hero['speed'] < monster['speed']:
         first = monster
         second = hero
+    elif hero['speed'] > monster['speed']:
+        first = hero
+        second = monster
+    else:  # When speed is tied, we flip a coin.
+        if random() > 0.5:
+            first = monster
+            second = hero
+        else:
+            first = hero
+            second = monster
 
     battle_over = False
     run_successful = False
@@ -17,10 +25,10 @@ def battle(hero, monster):
         action = menu(['Attack', 'Run'])
 
         if action == 'Attack':
-            second = attack(first, second)
+            attack(first, second)
 
             if second['hp'] > 0:
-                first = attack(second, first)
+                attack(second, first)
 
             if hero['hp'] == 0 or monster['hp'] == 0:
                 battle_over = True
@@ -45,8 +53,8 @@ def attack(attacker, target):
 
     base_damage = attacker['attack'] + weapon_bonus - target['defense']
 
-    if base_damage < 0:
-        base_damage = 0
+    if base_damage <= 0:
+        base_damage = 1
 
     modifier = 1
     special = None
@@ -65,13 +73,11 @@ def attack(attacker, target):
         target['hp'] = 0
 
     if special == 'miss':
-        print('Oh no, it missed!')
+        print('{} missed!'.format(attacker['name']))
     else:
         if special == 'critical':
             print('{} landed a critical hit!'.format(attacker['name']))
         print('It did {} damage!'.format(damage))
-
-    return target
 
 
 def display_battle_status(hero, monster):

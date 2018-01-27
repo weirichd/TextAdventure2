@@ -5,7 +5,8 @@ monsters = {
         'defense': 1,
         'speed': 1,
         'weapon': None,
-        'exp': 1
+        'exp': 1,
+        'gold': [0, 3]
     },
     'Troll': {
         'max hp': 15,
@@ -13,7 +14,8 @@ monsters = {
         'defense': 3,
         'speed': 3,
         'weapon': None,
-        'exp': 2
+        'exp': 2,
+        'gold': [2, 5]
     },
     'Ogre': {
         'max hp': 25,
@@ -21,7 +23,8 @@ monsters = {
         'defense': 5,
         'speed': 5,
         'weapon': None,
-        'exp': 3
+        'exp': 3,
+        'gold': [5, 10]
     }
 }
 
